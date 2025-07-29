@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 import os
 import sys
 sys.path.append('../')
-from src.agent_flow import AgentFlow
+from .agent_flow import AgentFlow
 
 load_dotenv()
 
