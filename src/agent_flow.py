@@ -32,7 +32,7 @@ class AgentFlow:
         print(f"Finding Articles about: {state.query}")
 
         article_query = f"{state.query} courses best alternatives"
-        search_results = self.crawl.search_institutions(article_query, num_results=5)
+        search_results = self.crawl.search_institutions(article_query, num_results=3)
         all_content = ""
         for result in search_results.data:
             url = result.get("url", "")
@@ -79,7 +79,7 @@ class AgentFlow:
 
         if not extracted_courses:
             print("No extracted courses found, falling back to direct search")
-            search_results = self.crawl.search_institutions(state.query, num_results=5)
+            search_results = self.crawl.search_institutions(state.query, num_results=3)
             course_names = [
                 result.get("metadata", {}).get("title", "unknown")
                 for result in search_results.data
@@ -90,7 +90,7 @@ class AgentFlow:
         print(f"Researching specific courses: {', '.join(course_names)}")
         institutions = []
         for course_name in course_names:
-            course_search_results = self.crawl.search_institutions(course_name + "official site", num_results=2)
+            course_search_results = self.crawl.search_institutions(course_name + "official site", num_results=3)
 
             if course_search_results:
                 result = course_search_results.data[0]
